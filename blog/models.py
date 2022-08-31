@@ -17,7 +17,7 @@ class PublishedManager(models.Manager):
     def get_queryset(self):
         return super(PublishedManager, self).get_queryset().filter(status='published')
 
-
+# you can use this for PersianSlug
 def my_slugify_function(content):
     return slugify(content, allow_unicode=True)
 
@@ -26,7 +26,7 @@ class Post(models.Model):
     STATUS_CHOICES = (('draft', 'چرک نویس'), ('published', 'منتشر شده'))
     title = models.CharField(max_length=80)
     slug = models.SlugField(max_length=80, unique_for_date='publish', allow_unicode=True)
-    slug = AutoSlugField(populate_from=['name'], unique=True, allow_unicode=True, slugify_function=my_slugify_function)
+    # slug = AutoSlugField(max_length=90, unique_for_date='publish', populate_from=['name'], unique=True, allow_unicode=True, slugify_function=my_slugify_function)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
     body = models.TextField()
     publish = models.DateTimeField(default=timezone.now)

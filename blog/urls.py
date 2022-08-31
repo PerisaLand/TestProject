@@ -16,6 +16,7 @@ urlpatterns = [
 
     path('', views.post_list, name='post_list'),
     path("<int:year>/<int:month>/<int:day>/<slug>/", views.post_detail, name='post_detail'),
-    re_path('person_list/(?P<slug>[-\w]+)/', views.post_detail, name='post_detail')
+    # this can replace to PersianSlug
+    re_path('person_list/(?P<slug>[-\w]+)/', views.post_detail, name='post_detail'),
 
 ]
