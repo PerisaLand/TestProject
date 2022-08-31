@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
+from django_extensions.db.fields import AutoSlugField
+from django.utils.text import slugify
 
 # Create your models here.
 
@@ -16,10 +18,15 @@ class PublishedManager(models.Manager):
         return super(PublishedManager, self).get_queryset().filter(status='published')
 
 
+def my_slugify_function(content):
+    return slugify(content, allow_unicode=True)
+
+
 class Post(models.Model):
     STATUS_CHOICES = (('draft', 'چرک نویس'), ('published', 'منتشر شده'))
     title = models.CharField(max_length=80)
     slug = models.SlugField(max_length=80, unique_for_date='publish', allow_unicode=True)
+    slug = AutoSlugField(populate_from=['name'], unique=True, allow_unicode=True, slugify_function=my_slugify_function)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
     body = models.TextField()
     publish = models.DateTimeField(default=timezone.now)
@@ -44,3 +51,5 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
