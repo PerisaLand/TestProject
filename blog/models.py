@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
-from django_extensions.db.fields import AutoSlugField
+# from django_extensions.db.fields import AutoSlugField
 from django.utils.text import slugify
 
 # Create your models here.
