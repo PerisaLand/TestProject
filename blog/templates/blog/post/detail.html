@@ -1,0 +1,8 @@
+{% extends "blog/base.html" %}
+{% block title %} {{ post.title }} {% endblock %}
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <p class="date">منتشر شده در {{ post.publish }} توسط {{ post.author }}</p>
+    {{ post.body|linebreaks }}
+    <p><a href="{% url 'blog:post_share' post.id %}">این پست را به اشتراک بگذار</a></p>
+{% endblock %}
