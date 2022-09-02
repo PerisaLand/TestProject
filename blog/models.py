@@ -24,15 +24,16 @@ def my_slugify_function(content):
 
 class Post(models.Model):
     STATUS_CHOICES = (('draft', 'چرک نویس'), ('published', 'منتشر شده'))
-    title = models.CharField(max_length=80)
-    slug = models.SlugField(max_length=80, unique_for_date='publish', allow_unicode=True)
+    title = models.CharField(max_length=80,verbose_name='عنوان')
+    slug = models.SlugField(max_length=80, unique_for_date='publish', allow_unicode=True, verbose_name='اسلاگ')
     # slug = AutoSlugField(max_length=90, unique_for_date='publish', populate_from=['name'], unique=True, allow_unicode=True, slugify_function=my_slugify_function)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts', verbose_name='نویسنده')
     body = models.TextField()
-    publish = models.DateTimeField(default=timezone.now)
+    publish = models.DateTimeField(default=timezone.now, verbose_name='تاریخ انتشار')
+    # thumbnail = models.ImageField(upload_to='images', verbose_name='تصاویر')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft', verbose_name='وضعیت')
 
 
     #1st approach
@@ -45,6 +46,8 @@ class Post(models.Model):
 
     class Meta:
         ordering = ('-publish',)
+        verbose_name = 'پست'
+        verbose_name_plural = 'پست ها'
 
     def get_absolute_url(self):
         return reverse('blog:post_detail', args=[self.publish.year, self.publish.month, self.publish.day, self.slug ])

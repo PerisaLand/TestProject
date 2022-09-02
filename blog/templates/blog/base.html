@@ -1,16 +1,16 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="fa">
     <head>
         <title>{% block title %} {% endblock %}</title>
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
     </head>
     <body>
-        <div id="content">
+        <div id="content" dir="rtl">
             {% block content %}
             {% endblock %}
         </div>
-        <div id="sidebar">
+        <div id="sidebar" dir="rtl">
             <h2>بلاگ جنگو</h2>
             <p>به بلاگ جنگو خوش آمدید</p>
         </div>
