@@ -5,4 +5,30 @@
     <p class="date">منتشر شده در {{ post.publish }} توسط {{ post.author }}</p>
     {{ post.body|linebreaks }}
     <p><a href="{% url 'blog:post_share' post.id %}">این پست را به اشتراک بگذار</a></p>
+
+    {% with comments.count as total_comments %}
+        <h2>
+        {{ total_comments }} نظر
+        </h2>
+    {% endwith %}
+
+    {% for comment in comments %}
+        <div class="comment">
+            <p class="info">نظر توسط {{ comment.name }} در تاریخ {{ comment.created }}</p>
+            {{ comment.body|linebreaks }}
+        </div>
+        {% empty %}
+            <p>هیچ اثری ثبت نشده است.</p>
+    {% endfor %}
+
+    {%  if new_comment %}
+        <h2>نظر شما با موفقیت ثبت شد</h2>
+    {% else %}
+        <h2>نظر خود را بنویسید</h2>
+        <form method="post">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="ثبت نظر">
+        </form>
+    {% endif %}
 {% endblock %}
