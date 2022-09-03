@@ -2,8 +2,8 @@
 {% block title %} اشتراک گذاری پست {{ post.title }}{% endblock %}
 {% block content %}
     {% if sent %}
-        <h1> ایمیل با موفقیت ارسال شد</h1>
-        <p>{{ post.title }} با موفقیت {{ form.cleaned_data.to }} ارسال شد.</p>
+        <h1>ایمیل با موفقیت ارسال شد</h1>
+        <p>{{ post.title }} با موفقیت به {{ form.cleaned_data.to }} ارسال شد</p>
     {% else %}
         <h1>{{ post.title }} را از طریق ایمیل به اشتراک بگذار</h1>
         <form method="post">
@@ -12,4 +12,15 @@
             <input type="submit" value="ارسال ایمیل">
         </form>
     {% endif %}
+{#    {% if sent %}#}
+{#        <h1> ایمیل با موفقیت ارسال شد</h1>#}
+{#        <p>{{ post.title }} با موفقیت {{ form.cleaned_data.to }} ارسال شد.</p>#}
+{#    {% else %}#}
+{#        <h1>{{ post.title }} را از طریق ایمیل به اشتراک بگذار</h1>#}
+{#        <form method="post">#}
+{#            {{ form.as_p }}#}
+{#            {% csrf_token %}#}
+{#            <input type="submit" value="ارسال ایمیل">#}
+{#        </form>#}
+{#    {% endif %}#}
 {% endblock %}

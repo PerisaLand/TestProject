@@ -22,7 +22,7 @@ class PostListView(ListView):
 
 
 # 2nd approach: pagination
-# -function-based-view
+# function-based-view
 # def post_list(request):
 #     object_list = Post.published.all()
 #     paginator = Paginator(object_list, 1)
@@ -39,6 +39,7 @@ class PostListView(ListView):
 def post_share(request, post_id):
     post = get_object_or_404(Post, id=post_id, status='published')
     sent = False
+
     if request.method == 'POST':
         form = EmailPostForm(request.POST)
         if form.is_valid():
@@ -52,7 +53,7 @@ def post_share(request, post_id):
     else:
         form = EmailPostForm()
 
-    return render(request, 'blog/post/share.html', {'post': post, 'form': form})
+    return render(request, 'blog/post/share.html', {'post': post, 'form': form, 'sent': sent})
 
 
 def post_detail(request, year, month, day, slug):

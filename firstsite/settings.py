@@ -117,11 +117,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_HOST = 'localhost'
-EMAIL_POST = 25
-EMAIL_HOST_USER = 'your_username'
-EMAIL_HOST_PASSWORD = 'your_password'
-EMAIL_USE_TLS = True
+# EMAIL_HOST = 'localhost'
+# EMAIL_POST = 25
+# EMAIL_HOST_USER = 'your_username'
+# EMAIL_HOST_PASSWORD = 'your_password'
+# EMAIL_USE_TLS = True
 
 # for internal email google mail
 # EMAIL_HOST = 'smtp.gmail.com'
