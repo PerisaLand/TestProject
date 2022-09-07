@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.urls import reverse
 # from django_extensions.db.fields import AutoSlugField
 from django.utils.text import slugify
+from taggit.managers import TaggableManager
 
 
 # Create your models here.
@@ -37,6 +38,7 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft', verbose_name='وضعیت')
+    tags = TaggableManager()
 
     # 1st approach
     # model manager

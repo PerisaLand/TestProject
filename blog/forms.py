@@ -7,9 +7,11 @@ class EmailPostForm(forms.Form):
     to = forms.EmailField()
     comment = forms.CharField(required=False, widget=forms.Textarea)
 
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('name', 'email', 'body')
+        labels = {'name': 'نام', 'Email': 'ایمیل', 'Body': 'متن'}
         # exclude = ('post', 'created', 'updated', 'active')
 
